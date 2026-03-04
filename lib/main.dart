@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(LoginPage());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,53 +18,56 @@ class MyApp extends StatelessWidget {
               SizedBox(height: 200),
               Text(
                 "FridgeAI",
-                style: TextStyle(
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8),
               Text(
                 "Snap, Recipe, Repeat!",
-                style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.grey,
-                ),
+                style: TextStyle(fontSize: 30, color: Colors.grey),
               ),
-              SizedBox(height: 150),
-              OutlinedButton(
+              SizedBox(height: 180),
+              PreHomeButton(
+                label: 'Login',
                 onPressed: () {
-                  //Navigate to login page
-                  debugPrint('Login button pressed');
+                  debugPrint("Login button pressed");
                 },
-                style: OutlinedButton.styleFrom(
-                  textStyle: const TextStyle(fontSize: 25),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
-                  ),
-                  minimumSize: const Size(150, 50),
-                ),
-                child: const Text("Login"),
-              )
-            ]
+              ),
+              SizedBox(height: 15),
+               PreHomeButton(
+                label: 'Sign Up',
+                onPressed: () {
+                  debugPrint("Sign up button pressed");
+                },
+              ),
+            ],
           ),
         ),
-        /*
-        body: Center(
-          child: Container(
-            margin: const EdgeInsets.all(50),
-            padding: const EdgeInsets.all(10),
-            height: 200,
-            width: 200,
-            alignment: Alignment.topCenter,
-            child: Text(
-              "FridgeAI",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
-        */
       ),
+    );
+  }
+}
+
+// Refactored LoginButton into a separate widget for better code organization and reusability
+class PreHomeButton extends StatelessWidget {
+  final String label;
+  final VoidCallback onPressed;
+
+  const PreHomeButton({
+    required this.label,
+    required this.onPressed,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      onPressed: onPressed,
+      style: OutlinedButton.styleFrom(
+        textStyle: const TextStyle(fontSize: 25),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        minimumSize: const Size(150, 50),
+      ),
+      child: Text(label),
     );
   }
 }
