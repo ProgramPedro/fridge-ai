@@ -35,6 +35,26 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
+  # Makes HTTP requests — used to call the OpenAI API with the fridge image
+  http: ^1.2.0
+
+  # Loads the .env file at startup so API keys never live in your Dart code
+  flutter_dotenv: ^6.0.0
+
+  # Accesses the phone camera and photo gallery to take or pick fridge photos
+  image_picker: ^1.0.7
+
+  # Official Supabase SDK — handles auth, database queries, and file storage
+  supabase_flutter: ^2.0.0
+
+  # State management — shares data like pantry items across screens without
+  # manually passing it through every widget
+  provider: ^6.1.1
+
+  # Navigation — moves between screens using named routes like /pantry or /scan
+  # Also lets you block unauthenticated users from reaching protected screens
+  go_router: ^17.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -67,6 +87,10 @@ flutter:
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/to/asset-from-package
+  assets:
+    # Registers the .env file so flutter_dotenv can read it at runtime.
+    # Without this line the app will crash on startup even if .env exists.
+    - .env
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
